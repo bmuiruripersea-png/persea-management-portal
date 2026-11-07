@@ -6,10 +6,9 @@ Small web-app package that puts an icon (avocado) on a phone, tablet or computer
 Tapping the icon opens your dashboard in its own window, without browser tabs.
 Apps Script cannot serve an installable app by itself, so these files are hosted separately (free).
 
-STEP 1 - PUT YOUR DASHBOARD LINK IN
-1. Open index.html in Notepad.
-2. Replace PASTE_YOUR_DASHBOARD_EXEC_URL_HERE with your dashboard link (the one ending in /exec).
-3. Save the file.
+STEP 1 - YOUR DASHBOARD LINK
+Already set inside index.html (const DASHBOARD_URL). Nothing to do.
+If your dashboard link ever changes, edit that one line in index.html and upload the file again.
 
 STEP 2 - UPDATE THE DASHBOARD SCRIPT
 In Apps Script, paste the new Code.gs, save, then Deploy > Manage deployments > pencil icon >
