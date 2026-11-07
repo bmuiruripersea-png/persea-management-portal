@@ -1,0 +1,30 @@
+{
+  "name": "Persea Management Portal",
+  "short_name": "Persea Portal",
+  "description": "Persea Oils & Orchards Ltd - compliance, monitoring and field operations portal",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#eef5ec",
+  "theme_color": "#0b5a22",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
