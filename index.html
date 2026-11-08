@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#0b5a22">
+<link rel="icon" type="image/png" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Persea Portal">
+<title>Persea Management Portal</title>
+<style>
+:root{--dg:#0b5a22;--dg2:#084a1b;--g:#12a85c;--b:#0a62d6}
+*{box-sizing:border-box}html,body{margin:0}
+body{background:#eef5ec;color:#12361b;font-family:'Segoe UI',Roboto,Arial,sans-serif;-webkit-tap-highlight-color:transparent}
+.app{display:flex;flex-direction:column;max-width:760px;margin:0 auto;background:linear-gradient(#e9f4e4,#f8fbf6 40%,#fff);min-height:100vh;box-shadow:0 0 30px rgba(11,90,34,.12);overflow:hidden}
+/* hero */
+.hero{position:relative;height:clamp(230px,44vw,320px);background:linear-gradient(#bfe0f3 0%,#e3f2f4 55%,#eaf5e4 100%)}
+.hero svg.land{position:absolute;left:0;right:0;bottom:0;width:100%;height:62%}
+.hero svg.branch{position:absolute;right:-2%;top:0;width:34%;height:92%}
+.logo{position:absolute;left:3%;top:6%;width:min(66%,430px)}
+/* banner */
+.banner{position:relative;margin:-58px 3% 0;border-radius:30px;background:linear-gradient(135deg,var(--dg),var(--dg2));color:#fff;text-align:center;padding:16px 10px 14px;box-shadow:0 8px 20px rgba(8,74,27,.35)}
+.banner .p{font-size:clamp(34px,8.5vw,56px);font-weight:800;letter-spacing:.07em;line-height:1}
+.banner .m{font-size:clamp(24px,6vw,40px);font-weight:700;line-height:1.1;margin-top:2px}
+.banner .t{font-style:italic;font-size:clamp(14px,3.6vw,20px);margin-top:6px;opacity:.95}
+/* cards */
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:14px 3% 0}
+.card{border-radius:22px;color:#fff;text-align:center;padding:16px 12px 14px;text-decoration:none;display:flex;flex-direction:column;align-items:center;box-shadow:0 8px 18px rgba(0,0,0,.18);transition:transform .15s}
+.card:hover{transform:translateY(-3px)}
+.card.bl{background:linear-gradient(160deg,#2f95ff,var(--b) 60%,#0848ab)}
+.card.gr{background:linear-gradient(160deg,#26d37f,var(--g) 60%,#0b8a47)}
+.card .ic{height:66px;display:flex;align-items:center}
+.card h3{margin:6px 0 4px;font-size:clamp(22px,5.4vw,32px);font-weight:700;line-height:1}
+.card p{margin:0 0 12px;font-size:clamp(13px,3.3vw,17px);line-height:1.3;flex:1}
+.btn{background:#fff;border-radius:30px;padding:9px 12px;width:100%;font-weight:700;font-size:clamp(12px,3.3vw,18px);white-space:nowrap;display:flex;justify-content:center;align-items:center;gap:8px}
+.bl .btn{color:var(--b)}.gr .btn{color:var(--g)}
+.kobo{font-size:clamp(23px,5.6vw,34px);font-weight:600;letter-spacing:-.02em}
+/* quick links */
+.ql{position:relative;margin:30px 3% 28px;border:1.5px solid #cfe0cf;border-radius:18px;background:#fff;display:grid;grid-template-columns:repeat(4,1fr);padding:20px 0 12px;box-shadow:0 3px 10px rgba(11,90,34,.08)}
+.ql .lab{position:absolute;top:-15px;left:50%;transform:translateX(-50%);background:var(--dg);color:#fff;font-weight:700;padding:4px 30px;border-radius:16px;font-size:clamp(15px,3.8vw,20px)}
+.ql a{text-align:center;text-decoration:none;color:var(--dg);font-weight:600;font-size:clamp(12px,3vw,16px);padding:4px 4px;border-left:1px solid #d9e6d9;display:flex;flex-direction:column;align-items:center;gap:6px;line-height:1.15}
+.ql a:first-of-type{border-left:0}.ql a:hover{color:var(--g)}
+.ql svg{width:clamp(30px,8vw,44px);height:clamp(30px,8vw,44px);fill:none;stroke:var(--dg);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+/* footer */
+.foot{position:relative;margin-top:auto;color:#fff;text-align:center;padding:42px 6% 18px}
+.foot svg{position:absolute;inset:0;width:100%;height:100%}
+.foot>*{position:relative}
+.foot .s{font-style:italic;font-size:clamp(18px,4.6vw,26px)}
+.foot .c{display:flex;align-items:center;gap:12px;justify-content:center;font-size:clamp(13px,3.3vw,17px);margin-top:4px}
+.foot .c i{flex:1;height:1px;background:rgba(255,255,255,.7)}
+#dash{position:fixed;inset:0;z-index:20;background:#0b1220;display:flex;flex-direction:column}
+#dash[hidden]{display:none}
+.dbar{display:flex;align-items:center;gap:12px;background:var(--dg);color:#fff;padding:8px 14px;padding-top:max(8px,env(safe-area-inset-top))}
+.dbar a{color:#fff;text-decoration:none;font-weight:700;font-size:14px;background:rgba(255,255,255,.16);padding:6px 12px;border-radius:16px;white-space:nowrap}
+.dbar a:hover{background:rgba(255,255,255,.3)}.dbar .dt{flex:1;text-align:center;font-weight:700;font-size:15px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dwrap{position:relative;flex:1}.dwrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:transparent}
+.dmsg{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#cfe3d4;text-align:center;font-size:16px;gap:6px}.dmsg small{opacity:.8;font-size:13px}
+#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(30px);background:#12361b;color:#fff;padding:10px 18px;border-radius:20px;opacity:0;transition:.3s;pointer-events:none;font-size:14px}
+#toast.on{opacity:1;transform:translateX(-50%)}
+</style></head><body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<linearGradient id="skin" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3f7d33"/><stop offset="1" stop-color="#143f1b"/></linearGradient>
+<radialGradient id="fl" cx="50%" cy="62%" r="60%"><stop offset="0" stop-color="#f4f7a8"/><stop offset=".6" stop-color="#c9dd5b"/><stop offset="1" stop-color="#8fb338"/></radialGradient>
+<radialGradient id="sd" cx="38%" cy="32%" r="75%"><stop offset="0" stop-color="#c0803f"/><stop offset=".6" stop-color="#8a5326"/><stop offset="1" stop-color="#5e3718"/></radialGradient>
+<path id="pear" d="M60 6C82 6 92 34 100 64C112 100 112 150 60 153C8 150 8 100 20 64C28 34 38 6 60 6Z"/>
+<g id="avw"><use href="#pear" fill="url(#skin)"/><ellipse cx="42" cy="50" rx="9" ry="22" fill="#fff" opacity=".18" transform="rotate(14 42 50)"/></g>
+<g id="avh"><use href="#pear" fill="#1f5a2a"/><use href="#pear" fill="url(#fl)" transform="translate(8.4 11.2) scale(.86)"/><circle cx="60" cy="104" r="25" fill="url(#sd)"/><ellipse cx="51" cy="94" rx="8" ry="5.5" fill="#e0a86a" opacity=".6" transform="rotate(-30 51 94)"/></g>
+<path id="leaf" d="M0 0C14-16 44-16 62 0C44 16 14 16 0 0Z"/>
+</defs></svg>
+
+<div class="app">
+ <div class="hero">
+  <svg class="land" viewBox="0 0 760 200" preserveAspectRatio="none"><path d="M0 70C120 40 220 80 330 60S560 30 760 62V200H0Z" fill="#a9cf8f"/><path d="M0 100C140 70 260 112 400 90S640 66 760 96V200H0Z" fill="#6fb04f"/><path d="M0 138C150 112 300 148 450 128S680 108 760 130V200H0Z" fill="#3f8f33"/></svg>
+  <svg class="branch" viewBox="0 0 200 300"><path d="M200 18C150 40 120 30 78 72" stroke="#5b4a2a" stroke-width="5" fill="none" stroke-linecap="round"/>
+   <g fill="#2f8a2e"><use href="#leaf" transform="translate(170 22) rotate(150) scale(.9)"/><use href="#leaf" transform="translate(120 38) rotate(-155) scale(.8)" fill="#3c9a35"/><use href="#leaf" transform="translate(96 56) rotate(120) scale(.8)"/><use href="#leaf" transform="translate(200 90) rotate(170) scale(1.1)" fill="#287a28"/></g>
+   <g><use href="#avw" transform="translate(70 62) scale(.62) rotate(8)"/><use href="#avw" transform="translate(128 36) scale(.7) rotate(-6)"/><use href="#avw" transform="translate(150 118) scale(.55) rotate(12)"/></g></svg>
+  <svg class="logo" viewBox="0 0 330 112" aria-label="Persea Oils &amp; Orchards Ltd">
+   <use href="#avw" transform="translate(2 12) scale(.5) rotate(-12 60 80)"/><use href="#avh" transform="translate(40 18) scale(.5) rotate(10 60 80)"/>
+   <path d="M106 8V84" stroke="#0b5a22" stroke-width="2"/>
+   <text x="118" y="52" font-family="Segoe UI,Arial,sans-serif" font-size="46" font-weight="800" fill="#0e4a1e" letter-spacing="1">PERSEA</text>
+   <text x="119" y="78" font-family="Segoe UI,Arial,sans-serif" font-size="21" font-weight="700" fill="#16702a">Oils &amp; Orchards Ltd</text>
+   <path d="M8 96C80 84 210 92 322 78" stroke="#35b348" stroke-width="3" fill="none" stroke-linecap="round"/></svg>
+ </div>
+
+ <div class="banner"><div class="p">PERSEA</div><div class="m">Management Portal</div><div class="t">Compliance &nbsp;&bull;&nbsp; Monitoring &nbsp;&bull;&nbsp; Better Harvests</div></div>
+
+ <div class="cards">
+  <a class="card bl" href="#dashboard"><div class="ic"><svg width="66" height="62" viewBox="0 0 66 62" fill="#d9ecff"><rect x="2" y="38" width="12" height="22" rx="2"/><rect x="20" y="28" width="12" height="32" rx="2"/><rect x="38" y="16" width="12" height="44" rx="2"/><path d="M6 26L26 12l14-6 12-4" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M42 2h14v14" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+   <h3 style="font-size:clamp(17px,4.4vw,27px);line-height:1.1">Inspection Submissions</h3><p>Live submissions, farmer progress and reports</p><span class="btn">Open Dashboard <b>&rsaquo;</b></span></a>
+  <a class="card gr" data-k="kobo" href="https://kf.kobotoolbox.org/" target="_blank" rel="noopener"><div class="ic"><svg width="34" height="40" viewBox="0 0 34 40" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px"><path d="M26 22v9a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5V12a5 5 0 0 1 5-5h9"/><path d="M10 19l6 6L31 6"/></svg><span class="kobo">KoboToolbox</span></div>
+   <h3 style="font-size:0;margin:0"></h3><p>Access data collection projects</p><span class="btn">Open Kobo <b>&rsaquo;</b></span></a>
+ </div>
+
+ <div class="foot"><svg viewBox="0 0 760 150" preserveAspectRatio="none"><path d="M0 40C140 6 300 18 420 10S660 4 760 26V150H0Z" fill="var(--dg)"/><path d="M0 40C140 6 300 18 420 10S660 4 760 26" stroke="#4cc04a" stroke-width="5" fill="none"/></svg>
+  <div class="s">Growing a Sustainable Future</div><div class="c"><i></i><span>Persea Oils &amp; Orchards Ltd</span><i></i></div></div>
+</div>
+<div id="dash" hidden>
+ <div class="dbar"><a class="back" href="#">&#8592; Portal</a><span class="dt">Inspection Submissions</span><a class="newtab" id="nt" target="_blank" rel="noopener">Open in new tab &#8599;</a></div>
+ <div class="dwrap"><div class="dmsg">Loading dashboard...<br><small>If nothing appears, tap "Open in new tab".</small></div><iframe id="df" title="Inspection Submissions dashboard" allow="fullscreen" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+</div>
+<div id="toast">Coming soon</div>
+<script>
+/* The dashboard link (the Apps Script web app ending in /exec). Change it here if it ever changes. */
+var DASH='https://script.google.com/macros/s/AKfycbyvDEmkjSlwNWyrdjX0yIg4IZimVKUA5_bq8f9JoA6uvlHIfl_4TigWFVufstIeNnhg/exec';
+if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js');
+var dash=document.getElementById('dash'),df=document.getElementById('df');
+document.getElementById('nt').href=DASH;
+function route(){
+  if(location.hash==='#dashboard'){
+    if(!df.getAttribute('src'))df.src=DASH;      // load once, on first open
+    dash.hidden=false;document.body.style.overflow='hidden';
+  }else{dash.hidden=true;document.body.style.overflow=''}
+}
+window.addEventListener('hashchange',route);route();
+</script></body></html>
